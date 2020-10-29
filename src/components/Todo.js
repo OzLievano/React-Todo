@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {Badge, Card,CardBody,CardHeader} from 'reactstrap'
 const ToDo = (props) => {
 
     const handleClick = () => {
@@ -7,7 +7,14 @@ const ToDo = (props) => {
     }
     return (
         <div onClick={handleClick} className={`item${props.task.completed?" completed" :""}`}>
-           <p>{props.task.task}</p>
+            <div>
+                <Card color="primary" style={{width:'25%'}}>
+                    <CardBody>
+                        <Badge>{props.task.id}</Badge>
+                        <CardHeader style={{fontWeight:'bold'}}>{props.task.task}</CardHeader>
+                    </CardBody>
+                </Card>
+            </div>
         </div>
     )
 }
