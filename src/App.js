@@ -40,7 +40,7 @@ class App extends React.Component {
     })
   }
 
-  addTask = (taskName) => {
+  addTask = taskName => {
     this.setState({
       toDoList:[
       ...this.state.toDoList, 
