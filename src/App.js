@@ -1,6 +1,7 @@
 import React from 'react';
 import TodoList from './components/TodoList'
 import TodoForm from './components/TodoForm'
+import './Todo.css'
 
 const toDoList = [{
   task:'To Do React',

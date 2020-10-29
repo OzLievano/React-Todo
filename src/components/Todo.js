@@ -3,7 +3,7 @@ import React from 'react'
 const ToDo = (props) => {
 
     const handleClick = () => {
-        props.toggleCompleted(props.task.id)
+        props.toggleCompleted(props.task.id);
     }
     return (
         <div onClick={handleClick} className={`item${props.task.completed?" completed" :""}`}>
