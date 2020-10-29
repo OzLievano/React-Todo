@@ -1,5 +1,6 @@
 import React from 'react';
 import TodoList from './components/TodoList'
+import TodoForm from './components/TodoForm'
 
 const toDoList = [{
   task:'To Do React',
@@ -20,24 +21,47 @@ class App extends React.Component {
     super();
     this.state={
       toDoList
-    }
+    };
+  }
+
+  toggleComplete = (taskId) => {
+    console.log("ol: app.js: App: toggleComplete: taskId ", taskId)
+    this.setState({
+      ...this.state,
+      toDoList: this.state.toDoList.map((item)=>{
+        if(item.id===taskId){
+          return {
+            ...item,
+            completed:!item.completed
+          };
+        }
+        return item;
+      })
+    })
+  }
+
+  addTask = (taskName) => {
+    this.setState({
+      toDoList:[
+      ...this.state.toDoList, 
+      {task:taskName,completed:false,id:Date.now()}
+    ]
+  })
+  }
+
+  clearCompleted = () => {
+    this.setState({
+      toDoList: this.state.toDoList.filter((item)=> !item.completed)
+    })
   }
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <form>
-          <label htmlFor="taskName">Task Name
-            <input
-              name="taskName"
-              id="taskName"
-              onChange={this.handleChange}
-            />
-          </label>
-          <button>Add To-do</button>
-          <button>Clear Completed</button>
-        </form>
-        <TodoList list={toDoList}/>
+        <TodoForm addTask={this.addTask}/>
+        <TodoList list={this.state.toDoList} toggleComplete={this.toggleComplete}
+        clearCompleted={this.clearCompleted}
+        />
       </div>
     );
   }
